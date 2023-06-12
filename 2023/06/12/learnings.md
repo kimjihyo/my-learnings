@@ -22,7 +22,7 @@ Once you install Git Credential Manager, the next time you clone an HTTPS URL th
 ### SSH
 If you authenticate with GitHub CLI, the CLI will find SSH public keys on your machine and will prompt you to select one for upload. If GitHub CLI does not find a SSH public key for upload, it can generate a new SSH public/private keypair and upload the public key to your account on GitHub. Then you can either authenticate with a personal access token or via the web browser.
 
-If you authenticate without GitHub CLI, you will need to generate an SSH public/private keypair on your local machine and add the public key to your account on GitHub. Every time you use Git to authenticate with GitHub, you'll be prompted to enter your SSH key passphrase, unless you've stored the key.
+If you authenticate without GitHub CLI, you will need to generate an SSH public/private keypair on your local machine and add the public key to your account on GitHub. Every time you use Git to authenticate with GitHub, you'll be prompted to enter your SSH key passphrase, unless you've stored the key. 
 
 
 # Storing Credentials per Repository in Git Credential Manager
