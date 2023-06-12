@@ -32,7 +32,7 @@ You (a physical person) may have one or more user accounts (identities) with one
 
 There are good reasons for having multiple identities on one domain. You might use one GitHub identity for your personal work, another for your open source work, and a third for your employer's work. You can ask Git to assign a different credential to different repositories hosted on the same provider. HTTPS URLs include an optional "name" part before an `@` sign in the domain name, and you can use this to force Git to distinguish multiple users. This should likely be your username on the Git hosting service, since there are cases where GCM will use it like a username.
 
-use: `https://kimjihyo@github.com/kimjihyo/repo.git`
+use: `https://kimjihyo@github.com/kimjihyo/repo.git` \
 instead of: `https://github.com/kimjihyo/repo.git`
 
 ## useHttpPath for the host
@@ -47,3 +47,16 @@ git config --global credential.useHttpPath true
 ```
 git config credential.useHttpPath true
 ```
+
+# `source` Command
+
+## What is it?
+`source` is a shell built-in command which is used to read and execute the content of a file, passwed as an argument in the current shell script.
+
+## Difference between executing a script and sourcing it
+both sourcing and executing the script will run the commands in the script line by line, as if you typed those commands by hand line by line.
+
+The differences are
+- When you execute the script you are opening a new shell, type the commands in the new shell, copy the output back to your current shell, then close the new shell. Any changes to environment will take effect only in the new shell and will be lost once the new shell is closed.
+- When you source the script you are typing the commands in your current shell. Any changes to the environment will take effect and stay in your current shell.
+
