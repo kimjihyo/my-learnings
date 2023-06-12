@@ -12,7 +12,7 @@ You can access repositories on GitHub from the command line in two ways, HTTPS, 
 ### HTTPS
 If you authenticate with GitHub CLI ([gh](https://cli.github.com/)), you can either authenticate with a personal access token or via the web browser. Password-based authentication for Git has been removed in favor of more secure authentication methods. Every time you use Git to authenticate with Github, you'll be prompted to enter your credentials to authenticate with GitHub, unless you cache them with a credential helper such as [GitHub CLI](https://cli.github.com), [Git Credential Manager](https://github.com/git-ecosystem/git-credential-manager) and osxkeychain.
 
-osxkeychain is the default credential helper on Mac, and it ask you to enter github username and password on the command prompt. You need to enter your personal access token for the password since password authentication has been removed.
+osxkeychain is the default credential helper on Mac, and it prompts you to enter github username and password on the command line. You need to e nter your personal access token for the password since password authentication has been removed.
 
 In order to check what credential helper is being used, run the following command.
 `git config credential.helper`
@@ -25,7 +25,25 @@ If you authenticate with GitHub CLI, the CLI will find SSH public keys on your m
 If you authenticate without GitHub CLI, you will need to generate an SSH public/private keypair on your local machine and add the public key to your account on GitHub. Every time you use Git to authenticate with GitHub, you'll be prompted to enter your SSH key passphrase, unless you've stored the key.
 
 
+# Storing Credentials per Repository in Git Credential Manager
 
-# Switching Github accounts in terminal
+## Add your username/PAT in the hostname
+You (a physical person) may have one or more user accounts (identities) with one or more Git hosting providers. Since most Git hosts don't put a "user" part in their URLs, by default, Git will treat the user part for a remote as the empty string. If you have multiple identities on one domain, you'll need to insert a unique user part per-identity yourself.
 
-# Signing commits
+There are good reasons for having multiple identities on one domain. You might use one GitHub identity for your personal work, another for your open source work, and a third for your employer's work. You can ask Git to assign a different credential to different repositories hosted on the same provider. HTTPS URLs include an optional "name" part before an `@` sign in the domain name, and you can use this to force Git to distinguish multiple users. This should likely be your username on the Git hosting service, since there are cases where GCM will use it like a username.
+
+use: `https://kimjihyo@github.com/kimjihyo/repo.git`
+instead of: `https://github.com/kimjihyo/repo.git`
+
+## useHttpPath for the host
+Git Credential Manager can select a credential baased on the full URL, rather than sharing them by hostname.
+
+### All repositories on the remote host
+```
+git config --global credential.useHttpPath true
+```
+
+### Just one repository on the remote host
+```
+git config credential.useHttpPath true
+```
