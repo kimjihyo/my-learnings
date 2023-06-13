@@ -60,3 +60,7 @@ The differences are
 - When you execute the script you are opening a new shell, type the commands in the new shell, copy the output back to your current shell, then close the new shell. Any changes to environment will take effect only in the new shell and will be lost once the new shell is closed.
 - When you source the script you are typing the commands in your current shell. Any changes to the environment will take effect and stay in your current shell.
 
+# .zprofile, .zshrc, .zlogin - What goes where?
+
+## `.zprofile`
+`.zprofile` and `.zlogin` are basically the same thing. they set the environment for login shells. But they get loaded at different times. Apple does things a little differently. Terminal initially opens both a login and interactive shell even though you don't authenticate. However, any subsequent shells that are opened are only interactive.
