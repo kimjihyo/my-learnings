@@ -60,7 +60,43 @@ The differences are
 - When you execute the script you are opening a new shell, type the commands in the new shell, copy the output back to your current shell, then close the new shell. Any changes to environment will take effect only in the new shell and will be lost once the new shell is closed.
 - When you source the script you are typing the commands in your current shell. Any changes to the environment will take effect and stay in your current shell.
 
-# .zprofile, .zshrc, .zlogin - What goes where?
+# .zprofile, .zshrc, - What goes where?
 
-## `.zprofile`
-`.zprofile` and `.zlogin` are basically the same thing. they set the environment for login shells. But they get loaded at different times. Apple does things a little differently. Terminal initially opens both a login and interactive shell even though you don't authenticate. However, any subsequent shells that are opened are only interactive.
+z-shell has quite a bunch of startup and shutdown files. So sometimes it gets difficult to decide what kind of functions, aliases, and operations to define in which of those files.
+
+Here is the complete list of the files:
+- .zshenv
+- .zprofile
+- .zshrc
+- .zlogin
+- .zlogout
+
+```
+~/.zprofile
+```
+`~/.zprofile` is one of the zsh startup and shutdown files. It is read at login. Since it is loaded only once at login time, it's best to put things that are loaded only once and can be inherited by subshells.
+
+
+```
+~/.zshrc
+```
+A cousin of `~/.zprofile` which is read when interactive. It is typically reserved for thins that ar not inheritable by subshells, such as aliases and functions, custom prompts, history customaizations. and so on.
+
+```
+~/.zshenv
+```
+This is read first and read every time, regardless of the shell being login, interactive or none. This is the recommended place to set environment variables, though I still prefer to set my envionment variables in .zprofile.
+
+Why would you need it? Because for eaxample, if you have a script tat gets called by launchid, it will run under non-interactive non-login shell, so neither .zshrc nor .zprofile will get loaded.
+
+```
+~/.zlogout
+```
+This file is read when you log out of a session. Useful for cleaning things up.
+
+## File load order
+- .zshenv
+- .zprofile
+- .zshrc
+- .zlogin
+- .zlogout
