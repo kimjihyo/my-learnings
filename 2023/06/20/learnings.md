@@ -22,7 +22,7 @@ A website or application that uses OAuth to access the Service Provider on behal
 
 ### Flow
 
-![oauth1.0_flow_1](./oath1.0_flow_1.png)
+![oauth1.0_flow_1](./oauth1.0_flow_1.png)
 
 #### (1) The Consumer obtains an unauthorized Request Token
 The sole purpose of the Request Token is to receieve User approval and to obtain an Access Token.
