@@ -55,3 +55,28 @@ The serer issuing access tokens to the client after successfully authenticating 
 ### Flow
 
 ![oauth2.0_flow_1](./oath2.0_flow_1.png)
+
+- (A) The client requests authorization from the resource owner. The authroization request can be made directly to the resource owner, or preferably indirectly via the authorization server as an intermediary.
+
+- (B) The client receives an authorization grant, which is a credential representing the resource owner's authorization, expressed using one of four grant types defined in this specifiation or using an extension grant type.
+
+- (C) The client request an access token by authenticating with the authorization server and presenting the authorization grant.
+
+- (D) The authorization server authenticates the client and validates the authorization grant, and if valid, issues an access token.
+
+- (E) The client requests the protected resource from the resource server and authenticates by presenting the access token.
+
+- (F) The resource server validates the access token, and if valid, serves the request.
+
+### Authorization Grant
+
+An authorization grant is a credential representing the resource owner's authorization used by the client to obtain an access token. There are four grant types -- authorization code, implicit, resource owner password credentials, and client credentials.
+
+## Differences between Oauth 1.0 and OAuth 2.0
+
+Followings are the major improvements that has happened in OAuth2.0
+
+- Better support for non-browser applications 
+- Reduced complexity in signing requests
+- The separation of roles
+- The short-ived access token and the refresh token.
