@@ -19,21 +19,40 @@ An individual who has an account with the Serivce Provider
 **Consumer**\
 A website or application that uses OAuth to access the Service Provider on behalf of the User.
 
-**Consumer Key**\
-A value used by the Consumer to identify itself to the Service Provider.
 
-**Consumer Secret**\
-A secret used by the Consumer to establish ownership of the Consumer Key.
+### Flow
 
-**Request Token**\
-A value used by the Consumer to obtain authorization from the User, and exchanged for an Access Token.
+![oauth1.0_flow_1](./oath1.0_flow_1.png)
 
-**Access Token**\
-A value used by the Consumer to gain access to the Protected Resoures on behalf of the User, instead of using the User's Service Provider credentials.
+#### (1) The Consumer obtains an unauthorized Request Token
+The sole purpose of the Request Token is to receieve User approval and to obtain an Access Token.
 
-**Token Secret**\
-A secret used by the Consumer to establish ownership of a given Token.
+To obtain a Request Token, the Consumer sends an HTTP request to the Service Provider's Request Token URL. The request must be ***signed*** and contains the following parameters:
+- oauth_consumer_key
+- oauth_signature_method
+- oauth_signature
+- oauth_timestamp
+- oauth_nonce
+- oauth_version
 
+#### (2) The User authorizes the Request Token
+The Consumer cannot use the Request Token until it has been authorized by the User. Obtaining User authorization includes the following steps.
+- The Consumer directs the User to the Service Provider
+- The Service Provider authenticates the User and obtains consent
+- The Service Provider directs the User back to the Consumer
+
+#### (3) The Consumer exchanges the Request Token for an Access Token.
+
+#### (4) The Consumer accesses protected resources using the Access Token.
+
+After successfully receiving the Access Token and Token Secret, the Consumer is able to access the Protected Resources on behalf of the User. The request MUST be signed and contains the following Parameters
+- oauth_consumer_key
+- oauth_token
+- oauth_signature_method
+- oauth_signaure
+- oauth_timestamp
+- oauth_nonce
+- oauth_version
 
 ## OAuth 2.0
 The OAuth 2.0 authorization framework enables a third-partiy application to obtain limited access to an HTTP service, either on behalf of a resource owener by orchestarting an approvall interaction between the resource owner and the HTTP service, oor by allowing the third-party application to obtain access on its own behalf. This specifiaction replaces and obsoletes the OAuth 1.0 protocol described in RFC 5849.
