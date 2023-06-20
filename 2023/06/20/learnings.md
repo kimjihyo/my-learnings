@@ -54,20 +54,4 @@ The serer issuing access tokens to the client after successfully authenticating 
 
 ### Flow
 
-+--------+                               +---------------+
-|        |--(A)- Authorization Request ->|   Resource    |
-|        |                               |     Owner     |
-|        |<-(B)-- Authorization Grant ---|               |
-|        |                               +---------------+
-|        |
-|        |                               +---------------+
-|        |--(C)-- Authorization Grant -->| Authorization |
-| Client |                               |     Server    |
-|        |<-(D)----- Access Token -------|               |
-|        |                               +---------------+
-|        |
-|        |                               +---------------+
-|        |--(E)----- Access Token ------>|    Resource   |
-|        |                               |     Server    |
-|        |<-(F)--- Protected Resource ---|               |
-+--------+                               +---------------+
+![oauth2.0_flow_1](./oath2.0_flow_1.png)
