@@ -55,7 +55,7 @@ After successfully receiving the Access Token and Token Secret, the Consumer is 
 - oauth_version
 
 ## OAuth 2.0
-The OAuth 2.0 authorization framework enables a third-partiy application to obtain limited access to an HTTP service, either on behalf of a resource owener by orchestarting an approvall interaction between the resource owner and the HTTP service, oor by allowing the third-party application to obtain access on its own behalf. This specifiaction replaces and obsoletes the OAuth 1.0 protocol described in RFC 5849.
+The OAuth 2.0 authorization framework enables a third-partiy application to obtain limited access to an HTTP service, either on behalf of a resource owener by orchestarting an approvall interaction between the resource owner and the HTTP service, or by allowing the third-party application to obtain access on its own behalf. This specifiaction replaces and obsoletes the OAuth 1.0 protocol described in RFC 5849.
 
 ### Roles
 
@@ -71,7 +71,7 @@ Ap application making protected resource requests on behalf of the resource owne
 **Authorization Server**\
 The serer issuing access tokens to the client after successfully authenticating the resource owner and obtaining authorization.
 
-### Flow
+### Abstract Flow Diagram
 
 ![oauth2.0_flow_1](./oath2.0_flow_1.png)
 
@@ -87,9 +87,28 @@ The serer issuing access tokens to the client after successfully authenticating 
 
 - (F) The resource server validates the access token, and if valid, serves the request.
 
-### Authorization Grant
 
-An authorization grant is a credential representing the resource owner's authorization used by the client to obtain an access token. There are four grant types -- authorization code, implicit, resource owner password credentials, and client credentials.
+### Creating an App
+
+Before you can begin the OAuth process, you must first register a new app with the service. When registering a new app, you usually register basic information such as application name, website, a logo, etc. In addition, you must register a redirect URI to be used for redirecting users to for web server, browser-based, or mobile apps.
+
+#### Redirect URIs
+The service will only redirect users to a registered URI, which helps prevent some attacks. Any HTTP redirect URIs must be served via HTTPS. This helps prevent tokens from being intercepted during the authorization process. Native apps may register a redirect URI with a custom URL scheme for the application, which may look like demoapp://redirect.
+
+#### Client ID and Secret
+After registering your app, you will receive a client ID and optionally a client secret. The client ID is considered public information, and is used to build login URLs, or included in Javascript source code on a page. The client secret must be kept confidential. If a deployed app cannot keep the secret confidential, such as single-page Javascript apps or native apps, then the secret is not used, and ideally the service shouldn't issue a secret to these types of apps in the first place.
+
+### Authorization Grant
+The first step of OAuth 2 is to get authorization from the user. For browser-based or mobile apps, this is usually accomplished by displaying an interface provided by the service to the user.
+
+OAuth 2 provides several "grant types" for different use cases. The grant types defined are:
+
+- ***Authorization Code*** for apps running on a web server, browser-based and mobile apps
+- ***Password*** for logging in with a username and password (only for first-party apps)
+- ***Client*** credentials for application access without a user present
+- ***Implicit*** was previously recommended for clients without a secret, but has been superseded by using the Authorization Code grant with PKCE.
+
+Each use case is described in detail below.
 
 ## Differences between Oauth 1.0 and OAuth 2.0
 
